@@ -41,21 +41,29 @@ var Main = function() {
 	
 	var tag = false;
 	
+	draggable.css('position', 'absolute');	// 兼容ie8
+	
 	draggable.each(function(i, blockEl) {
-		
 		var block = new Block();
 		block.position = $(blockEl).position();
+		
 		block.currentPosition = $(blockEl).position();
 		
 		block.el = $(blockEl);
 		$(blockEl).data('block', block);
 		
 		me.blocks.push(block);
+		
+		$(blockEl).css(block.position);	// 兼容ie8
 	});
+	
 	draggable.on('dragMove', function(e, pointer, moveVector ) {
+		
+			
 		
 		var currentBlock = $(this).data('block');	// 当前block
 		currentBlock.currentPosition = $(this).position();
+		
 		
 		var nearestBlockExt = me.getNearestBlock(currentBlock);
 		nearestBlockExt.currentPosition = $(this).position();	// 同步当前位置
@@ -72,14 +80,15 @@ var Main = function() {
 			tag = false;
 		} else {
 			tag || nearestBlockExt.block.shake();
-			
 			tag = true;
 			el.css({
 				'z-index': '2',
 				'border': '2px #36ab7a dashed'
 			});
 		}
+		
 	}).on('dragEnd', function(e, pointer) {
+		
 		
 		var currentBlock = $(this).data('block');	// 当前block
 		var nearestBlockExt = me.getNearestBlock(currentBlock);			// 获取距当前最近的block
@@ -107,12 +116,9 @@ var Main = function() {
 		}
 		nearestBlockExt.block.el.css('border', '2px white solid');
 		
-	}).on('pointerDown', function(event, pointer) {
-		//$(this).parent().css({border: '1px red dashed'})
-	}).on('pointerUp', function(event, pointer) {
-		//$(this).parent().css({border: '1px white dashed'})
-		
-	});	
+	}).on('pointerUp', function() {
+		$(this).focus(); // 兼容ie8的处理
+	});
 }
 
 

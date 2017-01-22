@@ -11,6 +11,7 @@
   "devDependencies": {
     "express": "^4.14.0",
     "gulp": "^3.9.1",
-    "mockjs": "^1.0.1-beta3"
+    "mockjs": "^1.0.1-beta3",
+	"draggabilly": "^1.2.4"
   }
 }
