@@ -1,14 +1,4 @@
-/*
-	10 10
-	10 + 10 + 10 + 100 10
-	10 + 10 + 10 + 10 + 10 + 100 10
-	10 + 10 + 10 + 10 + 10 + 10 + 10 + 100 10
 
-	10 10 + 10 + 10 + 100
-	10 + 10 + 10 + 100 10 + 10 + 10 + 100
-
-	10 + 20 * n + 100 * n
-*/
 
 var Block = function() {
 	// this.currentPosition	// 当前位置
@@ -29,7 +19,6 @@ Block.prototype = {
 				left: left - 2 
 			}, 100);
 		}.bind(this));
-		
 	},
 	stopShake: function() {
 		this.el.stop(true);
@@ -90,8 +79,6 @@ var Main = function() {
 				'border': '2px #36ab7a dashed'
 			});
 		}
-		
-		
 	}).on('dragEnd', function(e, pointer) {
 		
 		var currentBlock = $(this).data('block');	// 当前block
@@ -125,8 +112,7 @@ var Main = function() {
 	}).on('pointerUp', function(event, pointer) {
 		//$(this).parent().css({border: '1px white dashed'})
 		
-	});
-	
+	});	
 }
 
 
